@@ -27,7 +27,7 @@ function draw() {
 
   var mass2 = 15;
   var length2 = 100;
-  var xEnd2 = xEnd1 * sin(angle2);
+  var xEnd2 = xEnd1 + length2 * sin(angle2);
   var yEnd2 = yEnd1 + length2 * cos(angle2);
 
   // Second pendulum
@@ -36,5 +36,6 @@ function draw() {
   line(xEnd1, yEnd1, xEnd2, yEnd2);
   ellipse(xEnd2, yEnd2, mass2, mass2);
 
-  
+  angle1 += 0.1;
+  angle2 -= 0.05;
 }
