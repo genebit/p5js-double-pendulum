@@ -35,7 +35,4 @@ function draw() {
   strokeWeight(8);
   line(xEnd1, yEnd1, xEnd2, yEnd2);
   ellipse(xEnd2, yEnd2, mass2, mass2);
-
-  angle1 += 0.1;
-  angle2 -= 0.05;
 }
