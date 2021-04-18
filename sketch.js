@@ -8,7 +8,7 @@ let yPos1 = 0;
 let angularVelocity1 = 0.01;
 
 let mass2 = 15;
-let length2 = 100;
+let length2 = 150;
 let angle2 = 200;
 let xPos2 = 0;
 let yPos2 = 0;
@@ -18,10 +18,13 @@ function setup() {
      createCanvas(500, 500);
 }
 
+let trails = [];
+let alpha = 0;
+
 function draw() {
      // Center the elements
      background(30, 30, 30);
-     translate(250, 150);
+     translate(250, 120);
      stroke(255);
      strokeWeight(6);
 
@@ -41,6 +44,19 @@ function draw() {
 
      line(xPos1, yPos1, xPos2, yPos2);
      ellipse(xPos2, yPos2, mass2, mass2);
+
+     // Trails----------------/
+     trails.push([xPos2, yPos2]);
+     for(let i = 0; i < trails.length; i++) {
+          noStroke();
+          fill(235, 79, 52, alpha);
+          ellipse(trails[i][0], trails[i][1], 3);
+          if(alpha > 255) {
+               trails.shift();
+               alpha = 0;
+          }
+          alpha += 8;
+     }
 
      // Formula for computing angular velocity 1
      let ang1Num = -gravity * (2 * mass1 + mass2) * sin(angle1) -
@@ -65,7 +81,7 @@ function draw() {
      angularVelocity2 += angularAcceleration2;
      angle1 += angularVelocity1;
      angle2 += angularVelocity2;
-
+     
      // Damping
      // angularVelocity1 *= 0.999;
      // angularVelocity2 *= 0.999;
