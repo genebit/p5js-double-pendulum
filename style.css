@@ -1,4 +1,25 @@
 * {
-  margin: 20px 20px 20px 20px;
-  background-color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h5 {
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  z-index: 1;
 }

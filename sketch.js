@@ -15,7 +15,7 @@ let yPos2 = 0;
 let angularVelocity2 = 0.02;
 
 function setup() {
-     createCanvas(500, 500);
+     createCanvas(700, 700);
 }
 
 let trails = [];
@@ -23,8 +23,8 @@ let alpha = 0;
 
 function draw() {
      // Center the elements
-     background(255);
-     translate(250, 120);
+     background(240);
+     translate(350, 200);
      stroke(26);
      strokeWeight(6);
 
@@ -50,7 +50,7 @@ function draw() {
      for(let i = 0; i < trails.length; i++) {
           noStroke();
           fill(235, 79, 52, alpha);
-          ellipse(trails[i][0], trails[i][1], 3);
+          ellipse(trails[i][0], trails[i][1], 6);
           if(alpha > 255) {
                trails.shift();
                alpha = 0;
