@@ -23,9 +23,9 @@ let alpha = 0;
 
 function draw() {
      // Center the elements
-     background(30, 30, 30);
+     background(255);
      translate(250, 120);
-     stroke(255);
+     stroke(26);
      strokeWeight(6);
 
      // Point origin
