@@ -45,6 +45,30 @@ const FPS = 60;
 var ballA = new BallA(10, 100);
 var ballB = new BallB(15, 150);
 
+// Credits to StackOverflow: https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function hexToRgb(hex) {
+     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+     return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+     } : null;
+}
+
+function drawTrails(color) {
+     trails.push([ballB.xPosition, ballB.yPosition]);
+     for(let i = 0; i < trails.length; i++) {
+          noStroke();
+          fill(hexToRgb(color).r, hexToRgb(color).g, hexToRgb(color).b, alpha);
+          ellipse(trails[i][0], trails[i][1], ballB.mass/2);
+          if(alpha > 255) {
+               trails.shift();
+               alpha = 0;
+          }
+          alpha += 8;
+     }
+}
+
 function setup() {
      createCanvas(window.innerWidth/2, window.innerHeight);
      frameRate(FPS);
@@ -69,7 +93,7 @@ function draw() {
           gravity = $("#gravity").val(); 
      });
      
-     var enableDamping = $(".form-check-input").is(":checked");
+     var enableDamping = $("#damping").is(":checked");
      if (enableDamping) {
           ballA.angularVelocity *= 0.999;
           ballB.angularVelocity *= 0.999;
@@ -89,18 +113,15 @@ function draw() {
 
 // TRAILS
 // TODO: Change the look of this instead of ellipse, make it a continuous line
-     trails.push([ballB.xPosition, ballB.yPosition]);
-     for(let i = 0; i < trails.length; i++) {
-          noStroke();
-          fill(235, 79, 52, alpha);
-          ellipse(trails[i][0], trails[i][1], ballB.mass/2);
-          if(alpha > 255) {
-               trails.shift();
-               alpha = 0;
-          }
-          alpha += 8;
+     var enableTrails = $("#trails").is(":checked");
+     if (enableTrails) {
+          $("#colors").removeAttr("disabled");
+          drawTrails($("#colors").val());
      }
-
+     else {
+          $("#colors").attr("disabled","disabled");
+     }
+     
 //######################################################################
 // FORMULA FOR CALCULATING THE ANGULAR VELOCITY     ####################
 // NOTE: A and B refers to Ball A and B             ####################

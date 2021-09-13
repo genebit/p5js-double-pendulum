@@ -59,7 +59,7 @@
                         </tr>
                         <tr>
                             <td><a>Length</a></td>
-                            <td><input id="ball-2-length" type="range" min="50" max="200" step="1" value="100"></td>
+                            <td><input id="ball-2-length" type="range" min="50" max="300" step="1" value="100"></td>
                             <td><a id="ball-2-length-val">0</a></td>
                         </tr>
                     </tbody>
@@ -78,14 +78,22 @@
                             <td><a>Damping</a></td>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" checked>
+                                    <input id="damping" class="form-check-input" type="checkbox" checked>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a>Show Trails</a></td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input id="trails" class="form-check-input" type="checkbox" checked>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td><a>Trail Color</a></td>
                             <td>
-                                <input type="color" value="#eb4f34" style="padding: 5px 5px 5px 5px; border-radius: 5px;">
+                                <input id="colors" type="color" value="#0075FF" style="padding: 5px 5px 5px 5px; border-radius: 5px;">
                             </td>
                         </tr>
                     </tbody>
