@@ -1,4 +1,4 @@
-const gravity = 1;
+let gravity = 1;
 
 let mass1 = 10;
 let length1 = 100;
@@ -14,17 +14,32 @@ let xPos2 = 0;
 let yPos2 = 0;
 let angularVelocity2 = 0.02;
 
-function setup() {
-     createCanvas(700, 700);
-}
-
 let trails = [];
 let alpha = 0;
 
+const FPS = 60;
+
+function setup() {
+     createCanvas(600, 700);
+     frameRate(FPS);
+}
+
 function draw() {
+     $("#ball-1-mass").mouseup(function() { mass1 = $("#ball-1-mass").val(); });
+     $("#ball-1-length").mouseup(function() { length1 = $("#ball-1-length").val(); });
+     $("#ball-2-mass").mouseup(function() { mass2 = $("#ball-2-mass").val();  });
+     $("#ball-2-length").mouseup(function() { length2 = $("#ball-2-length").val(); });
+     $("#gravity").mouseup(function() { gravity = $("#gravity").val(); });
+     
+     var enableDamping = $(".form-check-input").is(":checked");
+     if (enableDamping) {
+          angularVelocity1 *= 0.999;
+          angularVelocity2 *= 0.999;
+     }
+
      // Center the elements
      background(240);
-     translate(350, 200);
+     translate(300, 200);
      stroke(26);
      strokeWeight(6);
 
@@ -37,7 +52,7 @@ function draw() {
 
      line(0, 0, xPos1, yPos1);
      ellipse(xPos1, yPos1, mass1, mass1);
-
+     
      // Second pendulum-------/
      xPos2 = xPos1 + length2 * sin(angle2);
      yPos2 = yPos1 + length2 * cos(angle2);
@@ -81,8 +96,4 @@ function draw() {
      angularVelocity2 += angularAcceleration2;
      angle1 += angularVelocity1;
      angle2 += angularVelocity2;
-     
-     // Damping
-     // angularVelocity1 *= 0.999;
-     // angularVelocity2 *= 0.999;
 }

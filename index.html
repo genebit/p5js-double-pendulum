@@ -2,87 +2,96 @@
 <html lang="en">
 
 <head>
-    <title>P5JS - Double Pendulum</title>
+  <title>P5JS - Double Pendulum</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-    <script src="/sketch.js"></script>
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+  <script src="/sketch.js"></script>
+  <script src="/values.js"></script>
 </head>
 
 <body>
-    <div class="content">
-        <div class="row">
-            <div class="offset-6 col-md-6">
-                <h2>Double Pendulum</h2>
-                <p style="text-align: justify;">A Double Pendulum is a pendulum with another pendulum attached to its end.</p>
-                
-                <br>
-                <h5>Ball A</h5>
-                
-                <table id="ball-1" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Mass</a></td>
-                            <td><input class="slider" type="range"></td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><a>Length</a></td>
-                            <td><input class="slider" type="range"></td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <br>
-                <h5>Ball B</h5>
+  <div class="content">
+    <div class="row">
+      <div class="offset-6 col-md-6">
+        <h2>Double Pendulum</h2>
+        <p style="text-align: justify;">A Double Pendulum is a pendulum with another pendulum attached to its end.</p>
 
-                <table id="ball-2" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Mass</a></td>
-                            <td><input class="slider" type="range"></td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><a>Length</a></td>
-                            <td><input class="slider" type="range"></td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <br>
+        <h5>Ball A</h5>
 
-                <br>
-                <table id="others" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Gravity</a></td>
-                            <td><input class="slider" type="range"></td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><a>Damping</a></td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <table id="ball-1" class="table table-sm">
+          <tbody>
+            <tr>
+              <td><a>Mass</a></td>
+              <td><input id="ball-1-mass" type="range" min="10" max="100" step="0.1" value="10"></td>
+              <td><a id="ball-1-mass-val">0</a></td>
+            </tr>
+            <tr>
+              <td><a>Length</a></td>
+              <td><input id="ball-1-length" type="range" min="50" max="200" step="1" value="100"></td>
+              <td><a id="ball-1-length-val">0</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <h5>Ball B</h5>
+
+        <table id="ball-2" class="table table-sm">
+          <tbody>
+            <tr>
+              <td><a>Mass</a></td>
+              <td><input id="ball-2-mass" type="range" min="10" max="100" step="0.1" value="15"></td>
+              <td><a id="ball-2-mass-val">0</a></td>
+            </tr>
+            <tr>
+              <td><a>Length</a></td>
+              <td><input id="ball-2-length" type="range" min="50" max="200" step="1" value="100"></td>
+              <td><a id="ball-2-length-val">0</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <h5>Other</h5>
+        <table id="others" class="table table-sm">
+          <tbody>
+            <tr>
+              <td><a>Gravity</a></td>
+              <td><input id="gravity" type="range" min="0" max="1" step="0.1" value="1"></td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td><a>Damping</a></td>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><a>Trail Color</a></td>
+              <td>
+                <input type="color" value="#eb4f34" style="padding: 5px 5px 5px 5px; border-radius: 5px;">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>
