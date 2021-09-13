@@ -1,26 +1,4 @@
-let gravity = 1;
-
-let mass1 = 10;
-let length1 = 100;
-let angle1 = 200;
-let xPos1 = 0;
-let yPos1 = 0;
-let angularVelocity1 = 0.01;
-
-let mass2 = 15;
-let length2 = 150;
-let angle2 = 200;
-let xPos2 = 0;
-let yPos2 = 0;
-let angularVelocity2 = 0.02;
-
-let trails = [];
-let alpha = 0;
-
-const FPS = 60;
-
 class BallA {
-
      constructor(mass, length) {
           this.mass = mass;
           this.length = length;
@@ -29,78 +7,93 @@ class BallA {
           this.yPosition = 0;
           this.angularVelocity = 0.01;
      }
+     draw() {
+          this.xPosition = this.length * sin(this.angle);
+          this.yPosition = this.length * cos(this.angle);
+
+          line(0, 0, this.xPosition, this.yPosition);
+          ellipse(this.xPosition, this.yPosition, this.mass, this.mass);
+     }
 }
 
 class BallB {
-
      constructor(mass, length) {
           this.mass = mass;
           this.length = length;
+
           this.angle = 200;
           this.xPosition = 0;
           this.yPosition = 0;
           this.angularVelocity = 0.02;    
      }
+     draw(ballAX, ballAY) {
+          this.xPosition = ballAX + this.length * sin(this.angle);
+          this.yPosition = ballAY + this.length * cos(this.angle);
+
+          line(ballAX, ballAY, this.xPosition, this.yPosition);
+          ellipse(this.xPosition, this.yPosition, this.mass, this.mass);
+     }
 }
 
+var gravity = 1;
+
+let trails = [];
+let alpha = 0;
+
+const FPS = 60;
+
+var ballA = new BallA(10, 100);
+var ballB = new BallB(15, 150);
+
 function setup() {
-     createCanvas(600, 700);
+     createCanvas(window.innerWidth/2, window.innerHeight);
      frameRate(FPS);
 }
 
 function draw() {
+
+// JQUERY VALUE PROPERTIES CHANGER
      $("#ball-1-mass").mouseup(function() { 
-          mass1 = $("#ball-1-mass").val(); 
+          ballA.mass = $("#ball-1-mass").val(); 
      });
      $("#ball-1-length").mouseup(function() { 
-          length1 = $("#ball-1-length").val(); 
+          ballA.length = $("#ball-1-length").val(); 
      });
      $("#ball-2-mass").mouseup(function() { 
-          mass2 = $("#ball-2-mass").val();  
+          ballB.mass = $("#ball-2-mass").val();  
      });
      $("#ball-2-length").mouseup(function() { 
-          length2 = $("#ball-2-length").val(); 
+          ballB.length = $("#ball-2-length").val(); 
      });
      $("#gravity").mouseup(function() { 
           gravity = $("#gravity").val(); 
      });
-     console.log(mass1, mass2);
-
+     
      var enableDamping = $(".form-check-input").is(":checked");
      if (enableDamping) {
-          angularVelocity1 *= 0.999;
-          angularVelocity2 *= 0.999;
+          ballA.angularVelocity *= 0.999;
+          ballB.angularVelocity *= 0.999;
      }
-
-     // Center the elements
+     
      background(240);
-     translate(300, 200);
+     translate(window.innerWidth/4, window.innerHeight/4);
      stroke(26);
      strokeWeight(6);
 
-     // Point origin
+// ORIGIN
      ellipse(0, 0, 10, 10);
 
-     // First pendulum-------/
-     xPos1 = length1 * sin(angle1);
-     yPos1 = length1 * cos(angle1);
+// DRAW BALL A AND B
+     ballA.draw();
+     ballB.draw(ballA.xPosition, ballA.yPosition);
 
-     line(0, 0, xPos1, yPos1);
-     ellipse(xPos1, yPos1, mass1, mass1);
-     
-     // Second pendulum-------/
-     xPos2 = xPos1 + length2 * sin(angle2);
-     yPos2 = yPos1 + length2 * cos(angle2);
-
-     line(xPos1, yPos1, xPos2, yPos2);
-     ellipse(xPos2, yPos2, mass2, mass2);
-
-     // Trails----------------/
-     trails.push([xPos2, yPos2]);
+// TRAILS
+// TODO: Change the look of this instead of ellipse, make it a continuous line
+     trails.push([ballB.xPosition, ballB.yPosition]);
      for(let i = 0; i < trails.length; i++) {
           noStroke();
           fill(235, 79, 52, alpha);
-          ellipse(trails[i][0], trails[i][1], 6);
+          ellipse(trails[i][0], trails[i][1], ballB.mass/2);
           if(alpha > 255) {
                trails.shift();
                alpha = 0;
@@ -108,27 +101,34 @@ function draw() {
           alpha += 8;
      }
 
-     // Formula for computing angular velocity 1
-     let ang1Num = -gravity * (2 * mass1 + mass2) * sin(angle1) -
-                    mass2 * gravity * sin(angle1 - 2 * angle2) -
-                    2 * sin(angle1 - angle2) *
-                    mass2 * (angularVelocity2 * angularVelocity2 * length2 +
-                    angularVelocity1 * angularVelocity1 * length1 * cos(angle1 - angle2));
+//######################################################################
+// FORMULA FOR CALCULATING THE ANGULAR VELOCITY     ####################
+// NOTE: A and B refers to Ball A and B             ####################
+//######################################################################
 
-     let ang1Denom = length1 * (2 * mass1 + mass2 - mass2 * cos(2 * angle1 - 2 * angle2));
-     let angularAcceleration1 = ang1Num / ang1Denom;
+// DON'T ASK ME HOW, THIS IS THE FORMULA: https://www.myphysicslab.com/pendulum/double-pendulum-en.html
 
-     // Formula for computing angular velocity 2
-     let ang2Num = 2 * sin(angle1 - angle2) * (angularVelocity1 * angularVelocity1 *
-                    length1 * (mass1 + mass2) + gravity * (mass1 + mass2) *
-                    cos(angle1) + angularVelocity2 * angularVelocity2 * length2 *
-                    mass2 * cos(angle1 - angle2));
+// ANGULAR VELOCITY A
+     let angleA_numerator = -gravity * (2 * ballA.mass + ballB.mass) * sin(ballA.angle) -
+               ballB.mass * gravity * sin(ballA.angle - 2 * ballB.angle) - 2 * sin(ballA.angle - ballB.angle) *
+               ballB.mass * (ballB.angularVelocity * ballB.angularVelocity * ballB.length + ballA.angularVelocity * 
+               ballA.angularVelocity * ballA.length * cos(ballA.angle - ballB.angle));
 
-     let ang2Denom = length2 * (2 * mass1 + mass2 - mass2 * cos(2 * angle1 - 2 * angle2));
-     let angularAcceleration2 = ang2Num / ang2Denom;
+     let angleA_denominator = ballA.length * (2 * ballA.mass + ballB.mass - ballB.mass * cos(2 * ballA.angle - 2 * ballB.angle));
+     let angularAcceleration1 = angleA_numerator / angleA_denominator;
 
-     angularVelocity1 += angularAcceleration1;
-     angularVelocity2 += angularAcceleration2;
-     angle1 += angularVelocity1;
-     angle2 += angularVelocity2;
+// ANGULAR VELOCITY B
+     let angle2_numerator = 2 * sin(ballA.angle - ballB.angle) * (ballA.angularVelocity * ballA.angularVelocity *
+               ballA.length * (ballA.mass + ballB.mass) + gravity * (ballA.mass + ballB.mass) *
+               cos(ballA.angle) + ballB.angularVelocity * ballB.angularVelocity * ballB.length *
+               ballB.mass * cos(ballA.angle - ballB.angle));
+
+     let angleB_denominator = ballB.length * (2 * ballA.mass + ballB.mass - ballB.mass * cos(2 * ballA.angle - 2 * ballB.angle));
+     let angularAcceleration2 = angle2_numerator / angleB_denominator;
+
+     ballA.angularVelocity += angularAcceleration1;
+     ballA.angle += ballA.angularVelocity;
+     
+     ballB.angularVelocity += angularAcceleration2;
+     ballB.angle += ballB.angularVelocity;
 }
