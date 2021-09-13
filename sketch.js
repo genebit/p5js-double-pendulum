@@ -19,18 +19,53 @@ let alpha = 0;
 
 const FPS = 60;
 
+class BallA {
+
+     constructor(mass, length) {
+          this.mass = mass;
+          this.length = length;
+          this.angle = 200;
+          this.xPosition = 0;
+          this.yPosition = 0;
+          this.angularVelocity = 0.01;
+     }
+}
+
+class BallB {
+
+     constructor(mass, length) {
+          this.mass = mass;
+          this.length = length;
+          this.angle = 200;
+          this.xPosition = 0;
+          this.yPosition = 0;
+          this.angularVelocity = 0.02;    
+     }
+}
+
 function setup() {
      createCanvas(600, 700);
      frameRate(FPS);
 }
 
 function draw() {
-     $("#ball-1-mass").mouseup(function() { mass1 = $("#ball-1-mass").val(); });
-     $("#ball-1-length").mouseup(function() { length1 = $("#ball-1-length").val(); });
-     $("#ball-2-mass").mouseup(function() { mass2 = $("#ball-2-mass").val();  });
-     $("#ball-2-length").mouseup(function() { length2 = $("#ball-2-length").val(); });
-     $("#gravity").mouseup(function() { gravity = $("#gravity").val(); });
-     
+     $("#ball-1-mass").mouseup(function() { 
+          mass1 = $("#ball-1-mass").val(); 
+     });
+     $("#ball-1-length").mouseup(function() { 
+          length1 = $("#ball-1-length").val(); 
+     });
+     $("#ball-2-mass").mouseup(function() { 
+          mass2 = $("#ball-2-mass").val();  
+     });
+     $("#ball-2-length").mouseup(function() { 
+          length2 = $("#ball-2-length").val(); 
+     });
+     $("#gravity").mouseup(function() { 
+          gravity = $("#gravity").val(); 
+     });
+     console.log(mass1, mass2);
+
      var enableDamping = $(".form-check-input").is(":checked");
      if (enableDamping) {
           angularVelocity1 *= 0.999;
