@@ -77,21 +77,33 @@ function setup() {
 function draw() {
 
 // JQUERY VALUE PROPERTIES CHANGER
-     $("#ball-1-mass").mouseup(function() { 
+     $("#ball-1-mass").on('mouseup', function() {
+          ballA.mass = $("#ball-1-mass").val(); 
+     }).on("touchend", function() {
           ballA.mass = $("#ball-1-mass").val(); 
      });
-     $("#ball-1-length").mouseup(function() { 
+     $("#ball-1-length").on("mouseup", function() { 
+          ballA.length = $("#ball-1-length").val(); 
+     }).on("touchend", function() {
           ballA.length = $("#ball-1-length").val(); 
      });
-     $("#ball-2-mass").mouseup(function() { 
+     
+     $("#ball-2-mass").on("mouseup", function() { 
+          ballB.mass = $("#ball-2-mass").val();  
+     }).on("touchend", function() { 
           ballB.mass = $("#ball-2-mass").val();  
      });
-     $("#ball-2-length").mouseup(function() { 
+     $("#ball-2-length").on("mouseup", function() { 
+          ballB.length = $("#ball-2-length").val(); 
+     }).on("touchend", function() {
           ballB.length = $("#ball-2-length").val(); 
      });
-     $("#gravity").mouseup(function() { 
+     
+     $("#gravity").on("mouseup",function() { 
           gravity = $("#gravity").val(); 
-     });
+     }).on("touchend",function() { 
+          gravity = $("#gravity").val(); 
+     });;
      
      var enableDamping = $("#damping").is(":checked");
      if (enableDamping) {
