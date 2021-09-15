@@ -1,28 +1,22 @@
 
-var w = window.innerWidth;
-var h = window.innerHeight;
+var canvas;
+var xPosition;
 
 function setup() {
-    canvas = createCanvas(w, h);
+    canvas = createCanvas(windowWidth, windowHeight);
+    canvas.style("z-index", "-1");
+
+    if (windowWidth < 600)  canvas.position(0, 600);
+    else                    canvas.position(0, 0);
 }
 
 function draw() {
-    background("#fff000");
-    // A rectangle
-    fill("#f2b55e");
-    strokeWeight(4);
-    rect(w/2, h/4, 200, 200);
-    // uses global variables for width and height
-}
-
-window.onresize = function () {
-    // assigns new values for width and height variables
-    w = window.innerWidth;
-    h = window.innerHeight;
-
-    console.log(w);
-    if (w < 500) {
-        w = w/4;
-    }
-    canvas.size(w, h);
+    background(180);
+    
+    if (windowWidth < 600)  xPosition = windowWidth / 2;
+    else                    xPosition = windowWidth / 4;
+    
+    fill(255);
+    // pendulum
+    ellipse(xPosition, windowHeight / 4, 20, 20);
 }
