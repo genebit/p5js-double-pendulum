@@ -12,13 +12,15 @@ h5 {
 }
 
 input {
-  width: 100%;
+  width: 90%;
 }
 
-.content {
-  position: absolute;
-  width: 60%;
-  margin-top: 5%;
-  margin-left: 30%;
-  z-index: 1;
+html {
+  overflow-y: scroll; 
+}
+
+.card {
+  height: 700px;
+  outline: none;
+  border: none;
 }

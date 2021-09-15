@@ -21,83 +21,65 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-                <h2>Double Pendulum</h2>
-                <p style="text-align: justify;">A Double Pendulum is a pendulum with another pendulum attached to its
-                    end.</p>
+    <div class="row">
+        <div class="col-md-6 offset-md-6">
+            <div class="card">
+                <div class="m-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Double Pendulum</h2>
+                            <p style="text-align: justify;">
+                                A Double Pendulum is a pendulum with another pendulum attached to its end.
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12"><h5>Ball A</h5></div>
+                        
+                        <div class="col-md-2"><a>Mass</a></div>
+                        <div class="col-md-10"><input id="ball-1-mass" type="range" min="10" max="60" step="1" value="10"></div>
+                        
+                        <div class="col-md-2"><a>Length</a></div>
+                        <div class="col-md-10"><input id="ball-1-length" type="range" min="50" max="200" step="1" value="100"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12"><h5>Ball B</h5></div>
 
-                <br>
-                <h5>Ball A</h5>
+                        <div class="col-md-2">Mass</div>
+                        <div  class="col-md-10"><input id="ball-2-mass" type="range" min="10" max="60" step="1" value="15"></div>
 
-                <table id="ball-1" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Mass</a></td>
-                            <td><input id="ball-1-mass" type="range" min="10" max="60" step="1" value="10"></td>
-                            <td><a id="ball-1-mass-val">0</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Length</a></td>
-                            <td><input id="ball-1-length" type="range" min="50" max="200" step="1" value="100"></td>
-                            <td><a id="ball-1-length-val">0</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <div class="col-md-2">Length</div>
+                        <div  class="col-md-10"><input id="ball-2-length" type="range" min="50" max="300" step="1" value="100"></div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12"><h5>Others</h5></div>
 
-                <br>
-                <h5>Ball B</h5>
+                        <div class="col-md-2"><a>Gravity</a></div>
+                        <div class="col-md-10"><input id="gravity" type="range" min="0" max="1" step="0.1" value="1"></div>
+                        
+                        <div class="col-md-2"><a>Damping</a></div>
+                        <div class="col-md-10">
+                            <div class="form-check form-switch">
+                                <input id="damping" class="form-check-input" type="checkbox" checked> 
+                            </div>
+                        </div>
 
-                <table id="ball-2" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Mass</a></td>
-                            <td><input id="ball-2-mass" type="range" min="10" max="60" step="1" value="15"></td>
-                            <td><a id="ball-2-mass-val">0</a></td>
-                        </tr>
-                        <tr>
-                            <td><a>Length</a></td>
-                            <td><input id="ball-2-length" type="range" min="50" max="300" step="1" value="100"></td>
-                            <td><a id="ball-2-length-val">0</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <div class="col-md-2"><a>Show Trails</a></div>
+                        <div class="col-md-10">
+                            <div class="form-check form-switch">
+                                <input id="trails" class="form-check-input" type="checkbox" checked>
+                            </div>
+                        </div>
 
-                <br>
-                <h5>Other</h5>
-                <table id="others" class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td><a>Gravity</a></td>
-                            <td><input id="gravity" type="range" min="0" max="1" step="0.1" value="1"></td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td><a>Damping</a></td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input id="damping" class="form-check-input" type="checkbox" checked>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a>Show Trails</a></td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <input id="trails" class="form-check-input" type="checkbox" checked>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><a>Trail Color</a></td>
-                            <td>
-                                <input id="colors" type="color" value="#0075FF" style="padding: 5px 5px 5px 5px; border-radius: 5px;">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <div class="col-md-2"><a>Trail Color</a></div>
+                        <div class="col-md-10">
+                            <input id="colors" type="color" value="#0075FF" style="padding: 5px 5px 5px 5px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
