@@ -15,6 +15,10 @@ input {
   width: 90%;
 }
 
+body {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 html {
   overflow-y: scroll; 
 }
