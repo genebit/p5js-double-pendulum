@@ -118,7 +118,7 @@ function draw() {
           ballB.angularVelocity *= 0.999;
      }
      
-     background(240);
+     background(255);
      
      if (windowWidth < 600)  xPosition = windowWidth / 2;
      else                    xPosition = windowWidth / 4;
