@@ -1,3 +1,5 @@
+const swup = new Swup();
+
 class BallA {
      constructor(mass, length) {
           this.mass = mass;
