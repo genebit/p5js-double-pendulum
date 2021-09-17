@@ -33,16 +33,3 @@ nav {
   outline: none;
   border: none;
 }
-
-/* Transition */
-.transition-page {
-  /* Determines what will show before the fade in */
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-html.is-animating .transition-page {
-  transform: scale(1.4);
-  opacity: 0;
-}
