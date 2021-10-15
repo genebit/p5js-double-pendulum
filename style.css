@@ -1,35 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+:root {
+	--dark: #212529;
+	--white: #ffffff;
+	--orange: #ff7316;
+	--red: #e64c41;
+	--blue-green: #7c978e;
+
+	--font: "JetBrains Mono", sans-serif;
+	--default-font-size: 500;
+
+	--box-shadow-param: 0px 0px 8px 0px;
+	--left-right-margin: 0px 10px;
+}
 * {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
+	font-family: var(--font);
+	font-weight: var(--default-font-size);
+	margin: 0;
+	padding: 0;
 }
-
-h2 {
-  font-weight: 700;
+h1,
+h2,
+h3 {
+	color: var(--dark);
+	font-weight: 700;
 }
-
-h5 {
-  font-weight: 600;
-}
-
-input {
-  width: 90%;
-}
-
 body {
-  margin-left: 10px;
-  margin-right: 10px;
+	background-color: var(--white);
+	margin: var(--left-right-margin);
 }
-html {
-  overflow-y: scroll; 
+footer {
+	display: block;
+	bottom: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
 }
-
+footer p {
+	color: var(--white);
+	margin: 20px 20px;
+}
+/* NAVBAR */
 nav {
-  color: rgb(185, 185, 185);
-  box-shadow: 0px 0px 8px 0px;
-  z-index: 1;
+	color: black;
+	box-shadow: var(--box-shadow-param);
+	z-index: 1;
+}
+nav .navbar-nav .nav-link,
+.navbar-brand {
+	font-family: var(--font);
+	color: var(--white) !important;
+	padding: 5px 20px;
+}
+nav a.navbar-brand.btn.btn-outline-light {
+	border-radius: 12px !important;
+}
+nav a.navbar-brand.btn.btn-outline-light:hover {
+	color: var(--dark) !important;
+}
+nav button.navbar-toggler,
+nav button span i {
+	border: none;
+	border-radius: 30px;
+	font-size: 20px;
+	color: rgba(var(--white), 1);
+	transition: background-color 0.5s;
+}
+nav button.navbar-toggler:focus {
+	box-shadow: none;
+}
+input {
+	width: 100%;
+}
+.card h2,
+.card h5 {
+	color: var(--dark);
+	font-weight: 600;
 }
 .card {
-  height: 700px;
-  outline: none;
-  border: none;
+	color: var(--dark);
+	/* background-color: var(--dark); */
+	height: 700px;
+	outline: none;
+	border: none;
 }
