@@ -26,7 +26,7 @@ h3 {
 }
 body {
 	background-color: var(--white);
-	margin: var(--left-right-margin);
+	margin: 0;
 }
 footer {
 	display: block;
