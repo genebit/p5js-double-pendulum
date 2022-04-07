@@ -131,6 +131,7 @@ function setup() {
 	canvas = createCanvas($("aside").width(), 800)
 	canvas.parent("p5jsContainer")
 	frameRate(FPS)
+	pixelDensity(1)
 }
 
 var ballA = new BallA(10, 100)
