@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z8NJKRLT5"></script>
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Z8NJKRLT5"></script>
 		<script>
 			window.dataLayer = window.dataLayer || []
 			function gtag() {
@@ -11,7 +11,7 @@
 			gtag("js", new Date())
 
 			gtag("config", "G-2Z8NJKRLT5")
-		</script>
+		</script> -->
 
 		<title>Double Pendulum</title>
 
@@ -19,120 +19,129 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Bootstrap 5.0.2 -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+		<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<!-- Jquery 3.6.0 -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<!-- Fontawesome 6.1.1 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-		<!-- Reference to Fontawesome -->
-		<link href="resources/fontawesome_v5.15/css/fontawesome.min.css" rel="stylesheet" />
-
+		<!-- p5js Library -->
 		<script src="libraries/p5.min.js"></script>
 
 		<link rel="stylesheet" href="style.css" />
-		<script src="sketch.js"></script>
+		<script defer src="sketch.js"></script>
 	</head>
-
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand btn btn-outline-light" style="border-radius: 20px">Genebit.Github.io</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="menu-bar">
-						<i class="fas fa-bars"></i>
-					</span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<hr style="color: white" />
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="https://genebit.github.io/home.html">Home</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Project </a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/myASCII/">MyASCII</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/p5js-audio-visualization/">Audio Visualization</a>
-								</li>
-								<li>
-									<a class="dropdown-item" href="https://genebit.github.io/p5js-double-pendulum/">Double Pendulum</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="container">
+		<main class="container">
 			<div class="row">
-				<div class="col-md-6 offset-md-6">
-					<div class="card">
-						<div class="m-4">
-							<div class="row">
-								<div class="col-md-12">
-									<h2>Double Pendulum</h2>
-									<p style="text-align: justify">A Double Pendulum is a pendulum with another pendulum attached to its end.</p>
-								</div>
-							</div>
-							<br />
-							<hr />
-							<div class="row">
-								<div class="col-md-12">
-									<h5>Ball A</h5>
-								</div>
-
-								<div class="col-md-2"><a>Mass</a></div>
-								<div class="col-md-10"><input id="ball-1-mass" type="range" min="10" max="60" step="1" value="10" /></div>
-
-								<div class="col-md-2"><a>Length</a></div>
-								<div class="col-md-10"><input id="ball-1-length" type="range" min="50" max="200" step="1" value="100" /></div>
-							</div>
-							<br />
-							<div class="row">
-								<div class="col-md-12">
-									<h5>Ball B</h5>
-								</div>
-
-								<div class="col-md-2">Mass</div>
-								<div class="col-md-10"><input id="ball-2-mass" type="range" min="10" max="60" step="1" value="15" /></div>
-
-								<div class="col-md-2">Length</div>
-								<div class="col-md-10"><input id="ball-2-length" type="range" min="50" max="300" step="1" value="100" /></div>
-							</div>
-							<br />
-							<div class="row">
-								<div class="col-md-12">
-									<h5>Others</h5>
-								</div>
-
-								<div class="col-md-2"><a>Gravity</a></div>
-								<div class="col-md-10"><input id="gravity" type="range" min="0" max="1" step="0.1" value="1" /></div>
-
-								<div class="col-md-2"><a>Damping</a></div>
-								<div class="col-md-10">
-									<div class="form-check form-switch">
-										<input id="damping" class="form-check-input" type="checkbox" checked />
+				<aside class="col-md-6">
+					<div id="p5jsContainer"></div>
+				</aside>
+				<aside class="col-md-6">
+					<div class="card shadow rounded-5 border-0 p-4">
+						<div class="card-header border-0 bg-transparent">
+							<h2 class="fw-bolder">
+								Double Pendulum
+								<i class="fa-solid fa-circle-question"></i>
+							</h2>
+						</div>
+						<div class="card-body px-4">
+							<section id="controls">
+								<section id="ballA">
+									<h5 class="fw-bolder">Ball A</h5>
+									<hr />
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-10">
+												<label for="massA">Mass</label>
+											</div>
+											<div class="col-md-2">
+												<small id="massAValue">0</small>
+											</div>
+										</div>
+										<input class="form-range" id="massA" oninput="updateValue('#ballA', this.value, '#massAValue', this)" type="range" min="10" max="60" step="1" value="10" />
 									</div>
-								</div>
-
-								<div class="col-md-2"><a>Show Trails</a></div>
-								<div class="col-md-10">
-									<div class="form-check form-switch">
-										<input id="trails" class="form-check-input" type="checkbox" checked />
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-10">
+												<label for="lengthA">Length</label>
+											</div>
+											<div class="col-md-2">
+												<small id="lengthAValue">0</small>
+											</div>
+										</div>
+										<input class="form-range" id="lengthA" oninput="updateValue('#ballA', this.value, '#lengthAValue', this)" type="range" min="50" max="200" step="1" value="100" />
 									</div>
-								</div>
-
-								<div class="col-md-2"><a>Trail Color</a></div>
-								<div class="col-md-10">
-									<input id="colors" type="color" value="#0075FF" style="padding: 5px 5px 5px 5px; border-radius: 5px" />
-								</div>
-							</div>
+								</section>
+								<section id="ballB">
+									<h5 class="fw-bolder">Ball B</h5>
+									<hr />
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-10">
+												<label for="massB">Mass</label>
+											</div>
+											<div class="col-md-2">
+												<small id="massBValue">0</small>
+											</div>
+										</div>
+										<input class="form-range" id="massB" oninput="updateValue('#ballB', this.value, '#massBValue', this)" type="range" min="10" max="60" step="1" value="15" />
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-10">
+												<label for="lengthB">Length</label>
+											</div>
+											<div class="col-md-2">
+												<small id="lengthBValue">0</small>
+											</div>
+										</div>
+										<input class="form-range" id="lengthB" oninput="updateValue('#ballB', this.value, '#lengthBValue', this)" type="range" min="50" max="300" step="1" value="100" />
+									</div>
+								</section>
+								<section id="otherControls">
+									<h5 class="fw-bolder">Others</h5>
+									<hr />
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-10">
+												<label for="gravity">Gravity</label>
+											</div>
+											<div class="col-md-2">
+												<small id="gravityValue">0</small>
+											</div>
+										</div>
+										<input class="form-range" id="gravity" oninput="updateValue('#otherControls', this.value, '#gravityValue', this)" type="range" min="0" max="1" step="0.1" value="1" />
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<label for="damping">Damping</label>
+											<div class="form-check form-switch">
+												<input id="damping" class="form-check-input" type="checkbox" checked />
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label for="trails">Show Trails</label>
+											<div class="form-check form-switch">
+												<input id="trails" class="form-check-input" type="checkbox" checked />
+											</div>
+										</div>
+										<div class="col-md-4">
+											<label for="trailColor">Trail Color</label>
+											<input id="trailColor" class="form-control form-control-color" type="color" value="#0075FF" />
+										</div>
+									</div>
+								</section>
+								<footer>
+									<button class="btn btn-sm btn-primary w-100 mt-3" onclick="location.reload()">Reset</button>
+								</footer>
+							</section>
 						</div>
 					</div>
-				</div>
+				</aside>
 			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		</main>
 	</body>
 </html>
